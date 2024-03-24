@@ -22,9 +22,9 @@ if ($result) {
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3><?php echo number_format($total_course_enrolled);?></h3>
+                 <h3><?php echo 4;?><sup style="font-size: 20px"></sup></h3>
 
-                <p>Courses Enrolled</p>
+                <p>Departments Enrolled</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -37,9 +37,9 @@ if ($result) {
         <!-- small box -->
         <div class="small-box bg-success">
             <div class="inner">
-                <h3><?php echo number_format($amount_generated,2);?><sup style="font-size: 20px"></sup></h3>
+                <h3><?php echo 23;?><sup style="font-size: 20px"></sup></h3>
 
-                <p>Amount Generated (₦)</p>
+                <p>Staff ID Generated</p>
             </div>
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -54,7 +54,7 @@ if ($result) {
             <div class="inner">
                 <h3>44</h3>
 
-                <p>Registrations</p>
+                <p>No Of Staff</p>
             </div>
             <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -67,9 +67,9 @@ if ($result) {
         <!-- small box -->
         <div class="small-box bg-danger">
             <div class="inner">
-            <h3><?php echo number_format($per_institution);?></h3>
+            <h3><?php echo 11?></h3>
 
-                <p>Savings to Institution (₦)</p>
+                <p>Pending</p>
             </div>
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>

@@ -1,6 +1,6 @@
 <?php 
 
-session_start();
+// session_start();
 require 'vendor/autoload.php';
 require 'inc/db.php';
 
@@ -32,11 +32,12 @@ $mpdf->Cell(20,5,'',0,0, '');
     $mpdf->SetFont('Arial','B',15);
     // $mpdf->Cell(190,10,'CLASSIC TAILORING SERVICES ',0,0,'C');
 
-    $query = "SELECT * FROM `tblstaff` where staff_Number = '$staff_Num'  "; 
+    $query = "SELECT * FROM `tblstaff` where staff_number = '$staff_Num'  "; 
     $result = mysqli_query($dbc,$query);
     //$html = mysqli_num_rows($result);
     while ($row = mysqli_fetch_array($result)) {
-    	if (file_exists('imgs/user.png')) {
+    	$image = $row['photo'];
+    	if (file_exists('staff_imgs/'. $image)) {
 
    
 			$staff = $row['staff_number'];
@@ -52,7 +53,7 @@ $mpdf->Cell(20,5,'',0,0, '');
     <div style="width: 85%;padding-right:7.5%; padding-left:7.5%;  float: center;border-style: solid;height: 100%;">
 	<span style = "color: red; font-size: 12px; text-align: center"><span style="color:white;">---------------</span>STAFF ID CARD</span>
 	<div style="width:100%; height:100px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border: radius 10px;">
-		<img  style="width:100%; height:90%;  " src = "imgs/user.png">
+		<img  style="width:100%; height:90%;  " src = "staff_imgs/'.$image.'">
 		</div>
 	<div style="width:background-color: black;
 	position: fixed;
@@ -72,7 +73,7 @@ $mpdf->Cell(20,5,'',0,0, '');
 	
 	$mpdf->AddPage();
 
-	$text = $row['first_name'].$row['others'].$row['staff_number'];
+	$text = $row['first_name'].' '.$row['staff_number'];
 	$barcodeText = trim($text);
 	$barcodeType='code128';
 	$barcodeDisplay='horizontal';
@@ -107,7 +108,7 @@ $mpdf->Cell(20,5,'',0,0, '');
 		
 		<tr >
 			
-			<td style= "text-align: center"><b>IN CASE OF EMERGENCY<br>SECURITY OFFICE</b> <br><b>08000000000</b><br><b>08000000000</b><br> <b> HEALTH SERVICES</b><br><b> 08000000000</b><br><b> 08000000000</b> </td>
+			<td style= "text-align: center"><b>IN CASE OF EMERGENCY<br>SECURITY OFFICE</b> <br><b>08099889988</b><br><b>08099792011</b><br> <b> HEALTH SERVICES</b><br><b> 08063253405</b><br><b> 08099998877</b> </td>
 		</tr>
 		<tr >
 			<td colspan= "2"><img class=əbarcodeə alt="'.$barcodeText.'" src="barcode.php?text='.$barcodeText.'&codetype='.$barcodeType.'&orientation='.$barcodeDisplay.'&size='.$barcodeSize.'&print='.$printText.'"/> </td>
@@ -121,12 +122,19 @@ $mpdf->Cell(20,5,'',0,0, '');
 	
 </div>');
 	
-
-}
-
-}
-
-
 $mpdf->Output();
+
+}
+else
+
+{
+	$_SESSION['no_image'] = "Y";
+	 echo "<meta http-equiv='refresh' content = '0; url = id_card_staff_num.php'/>";
+}
+
+}
+
+
+
 
 

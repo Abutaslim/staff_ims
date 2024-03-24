@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 
     // echo'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm'.$program.$session;
     
-    $sql = "SELECT * FROM tblstaff WHERE  staff_Number = '$staff_Num'  ";
+    $sql = "SELECT * FROM tblstaff WHERE  staff_number = '$staff_Num'  ";
     $rows = mysqli_num_rows(mysqli_query($dbc, $sql));
     if ($rows != 0) {
         $_SESSION['staff_Num'] = $staff_Num;
@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">Form for generating of Students ID cards</h1>
+                    <h1 class="m-0">Form for generating of Staff ID cards</h1>
 
                 </div><!-- /.col -->
 
@@ -89,26 +89,38 @@ if (isset($_POST['submit'])) {
                     //  echo $duration;
                     //  echo $category;
                     //  echo $gender;
+
                     if (!empty($message)) {
-                        echo '<div style="width:100%; margin-left:0%">
-                                                                  <div class="' .
-                            $alert .
-                            '">
-                                                                      <button type="button" class="close" data-dismiss="alert"
-                                                                          aria-hidden="true">&times;</button>
-                                                                      <h5><i class="icon fas fa-info"></i> Alert!</h5>
-                                                                      ' .
-                            $message .
-                            '
-                                                                  </div>
-                                                              </div>';
-                    }
+echo '<div style="width:100%; margin-left:0%">
+      <div class="' .$alert .'">
+          <button type="button" class="close" data-dismiss="alert"
+              aria-hidden="true">&times;</button>
+          <h5><i class="icon fas fa-info"></i> Alert!</h5>
+          ' .$message .'
+      </div>
+  </div>';
+}
+ if (!empty($_SESSION['no_image']=='Y')) {
+    $alert = 'alert alert-danger alert-dismissible';
+echo '<div style="width:100%; margin-left:0%">
+      <div class="' .$alert .'">
+          <button type="button" class="close" data-dismiss="alert"
+              aria-hidden="true">&times;</button>
+          <h5><i class="icon fas fa-info"></i> Alert!</h5>
+          No Image Found for '.$_SESSION['staff_Num'].'
+      </div>
+  </div>';
+  $_SESSION['no_image']='';
+ $staff_Num = $_SESSION['staff_Num'];
+ $_SESSION['staff_Num'] = '';
+}
+
 
                     ?>
                     <!-- end of message -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">ID Cards by Registration Number</h3>
+                            <h3 class="card-title">ID Cards by Staff Number</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -116,10 +128,10 @@ if (isset($_POST['submit'])) {
                             <div class="card-body">
                                
                                     <div class="form-group" >
-                        <label for="passenger">Registration Number:</label>
+                        <label for="passenger">Staff Number:</label>
                        
                         <input type="text" class="form-control" id="staff_Num" placeholder="Enter staff Number"
-                                                name='staff_Num'>
+                                   value ="<?php if(isset($staff_Num)) {echo $staff_Num;}?>"             name='staff_Num'>
                                 
                     
                                     </div>
