@@ -9,21 +9,21 @@ include 'inc/aside.php';
 
 if (isset($_POST['submit'])) {
 
-    $program = @$_POST['program'];
+    $department = @$_POST['department'];
     
     $session = @$_POST['session'];
 
     
-    $sql = "SELECT * FROM tblstudent WHERE  course_of_study = '$program' and `session` = '$session' ";
+    $sql = "SELECT * FROM tblstaff WHERE  department = '$department' ";
     $rows = mysqli_num_rows(mysqli_query($dbc, $sql));
     if ($rows != 0) {
-        $_SESSION['program'] = $program;
+        $_SESSION['department'] = $department;
         $_SESSION['session'] = $session;
-    echo "<meta http-equiv='refresh' content = '0; url = pdf_id_card_program.php'/>";
+    echo "<meta http-equiv='refresh' content = '0; url = pdf_id_card_department.php'/>";
 
     } else 
    
-                $message = 'Student`s Record does`nt exist, change entries and try again';
+                $message = 'Staff`s Record does`nt exist, change entries and try again';
                 $alert = 'alert alert-danger alert-dismissible';
             
   }
@@ -113,15 +113,15 @@ if (isset($_POST['submit'])) {
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="id_card_program.php" name="id_car_check">
+                        <form method="POST" action="id_card_department.php" name="id_car_check">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-6">
                                     <div class="form-group" >
-                        <label for="passenger">Program:</label>
+                        <label for="passenger">Department:</label>
                        
-                        <input type="text" class="form-control" id="program" placeholder="Enter program"
-                                                name='program'>
+                        <input type="text" class="form-control" id="department" placeholder="Enter department"
+                                                name='department'>
                                 
                     </div>
                                     </div>

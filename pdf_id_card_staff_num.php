@@ -64,6 +64,7 @@ $mpdf->Cell(20,5,'',0,0, '');
 		
 		<b >'.$row['first_name'].'</b><br>	
 		<b>'.$row['others'].'<br>
+		<b>'.$row['staff_number'].'<br>
 		'.$row['staff_rank'].'</b>
 	</div>
 	

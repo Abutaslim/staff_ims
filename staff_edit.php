@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $programme_Type = @$_POST['programme_Type'];
     $course_of_study = @$_POST['course_of_study'];
     //$prog = @$_POST['prog'];
-    $rank = @$_POST['rank'];
+    $nok_phone = @$_POST['nok_phone'];
     $session = @$_POST['session'];
     $blood_group = @$_POST['blood_group'];
     $exp_date = @$_POST['exp_date'];
@@ -279,9 +279,9 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label for="rank">Rank</label>
-                                            <input type="rank" class="form-control" id="rank"
-                                                placeholder="Enter Next of Kin Phone" name='rank'>
+                                            <label for="nok_phone">Next of Kin Phone </label>
+                                            <input type="nok_phone" class="form-control" id="nok_phone"
+                                                placeholder="Enter Next of Kin Phone" name='nok_phone'>
                                         </div>
                                     </div>
 
@@ -293,42 +293,28 @@ if (isset($_POST['submit'])) {
                                         <div class="form-group">
                                             <label for="text">Department</label>
                                             <input type="text" name="department" class="form-control" id="department">
-                                            <select id="" class="form-control" name='department'>
-                                                <option value="">Select Department </option>
+                                            <!-- <select id="" class="form-control" name='department'>
+                                                <option value="">Select Department </option> -->
                                             <?php
-                                            $query = 'SELECT `id`, distinct `department` FROM `tblstaff`';
+                                            // $query = 'SELECT `id`, `name` FROM `tblagencies`';
                                             
-                                            $result = mysqli_query($dbc, $query);
+                                            // $result = mysqli_query($dbc, $query);
                                             
 
-                                            while ($row = mysqli_fetch_array($result)) {
-                                                echo '<option value = '.$row[0].'>' . $row[1] . '</option>';
-                                            }
+                                            // while ($row = mysqli_fetch_array($result)) {
+                                            //     echo '<option value = '.$row[0].'>' . $row[1] . '</option>';
+                                            // }
                                             ?>
 
 
-                                            </select>
+                                            <!-- </select> -->
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
                                             <label for="faculty">Faculty</label>
 
-                                             <select id="" class="form-control" name='department'>
-                                                <option value="">Select Department </option>
-                                            <?php
-                                            $query = 'SELECT `id`, distinct `faculty` FROM `tblstaff`';
-                                            
-                                            $result = mysqli_query($dbc, $query);
-                                            
-
-                                            while ($row = mysqli_fetch_array($result)) {
-                                                echo '<option value = '.$row[0].'>' . $row[1] . '</option>';
-                                            }
-                                            ?>
-
-
-                                            </select>
+                                            <input type="text" name="faculty" class="form-control" id="faculty">
 
                                         </div>
                                     </div>
@@ -393,25 +379,11 @@ if (isset($_POST['submit'])) {
                                     
                                 </div>
 
-
-
-
-
-                   
-
-
-
-
-                    
-
-
-
-
                     <!-- /.card-body -->
 
                     <div class="card-footer">
                         <button type="submit" name="submit" class="btn btn-primary">Submit</button> &nbsp<a
-                            class="btn btn-info" href="courses_his.php">Back</a>
+                            class="btn btn-info" href="staff_list.php">Back</a>
                     </div>
                     </form>
                 </div>

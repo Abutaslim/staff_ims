@@ -15,7 +15,7 @@ $page="coordinator";
          <div class="container-fluid">
              <div class="row mb-2">
                  <div class="col-sm-12">
-                     <h1 class="m-0">Courses History:</h1>
+                     <h1 class="m-0">Staff List:</h1>
                      
 
                  </div><!-- /.col -->
@@ -38,7 +38,7 @@ $page="coordinator";
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">List of Students</h3> <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i><a href="student.php" style="color:white;"> Student</a></button>
+        <h3 class="card-title">List of Staff</h3> <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i><a href="staff.php" style="color:white;"> Staff</a></button>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -51,12 +51,11 @@ $page="coordinator";
                     <th>Gender</th>
                     <th>Blood Group</th>
                     <th>Phone</th>
+                    <th>Rank</th>
                     <th>Department</th>
-                    <th>Faculty</th>
-                    <th>Program</th>
-                    <th>Entry Mode</th>
-                    <th>NOK Phone</th>
-                    <th>Expirey Date</th>
+                    <th>Update</th>
+                    
+                    
                    
                 </tr>
             </thead>
@@ -64,7 +63,7 @@ $page="coordinator";
 
             <?php
             
-            $q = 'SELECT * FROM tblstudent' ;
+            $q = 'SELECT * FROM tblstaff' ;
             $r = mysqli_query($dbc, $q);
             if (mysqli_num_rows($r) >= 1) 
             {
@@ -74,22 +73,22 @@ $page="coordinator";
              {
                 echo '<tr>
                 <td>'.$sn.'</td>
-                <td>'.$row['reg_number'].'</td>
+                <td>'.$row['staff_number'].'</td>
                 <td>'.$row[2].' '.$row[3].'</td>';
                 $gender = $row['gender']=='M' ? "Male" : "Female";
              echo   '<td>'.$gender.'</td>
              <td>'.$row[9].'</td>
-
-                <td>'.$row[4].'</td>
-                
-                <td>'.$row[5].'</td>
+             <td>'.$row[10].'</td>
                 <td>'.$row[6].'</td>
-                <td>'.$row[11].'</td>
-                <td>'.$row['program_type'].'</td>
-                <td>'.$row['nok_phone'].'</td>
+                
+                <td>'.$row[7].'</td>
+
+                    <td style="text-align: center;"><a href="staff_edit.php? id= '.$row[0].'"> <i class="fa fa-edit"></td>
+
+                '
+                
 
                 
-                <td>'.$row['exp_date'].'</td>'
                 
                 ;
                 
@@ -113,12 +112,11 @@ $page="coordinator";
                     <th>Gender</th>
                     <th>Blood Group</th>
                     <th>Phone</th>
+                    <th>Rank</th>
                     <th>Department</th>
-                    <th>Faculty</th>
-                    <th>Program</th>
-                    <th>Entry Mode</th>
-                    <th>NOK Phone</th>
-                    <th>Expirey Date</th>
+                    <th>Update</th>
+                    
+                    
                 </tr>
             </tfoot>
         </table>

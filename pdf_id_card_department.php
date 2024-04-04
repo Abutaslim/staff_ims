@@ -22,7 +22,7 @@ $mpdf =new  \Mpdf\Mpdf();
 
 // $mpdf->SetFont('Arial','I',15);
 // $html = 'This is an id card';
-$staff_Num = $_SESSION['staff_Num'];
+$department = $_SESSION['department'];
 
 
 $mpdf =new  \Mpdf\Mpdf(['mode'=>'utf-8', 'format'=>[58,87 ],'margin_left'=>0, 'margin_bottom'=>0, 'margin_top'=>0, 'margin_right'=>0]);
@@ -32,15 +32,15 @@ $mpdf->Cell(20,5,'',0,0, '');
     $mpdf->SetFont('Arial','B',15);
     // $mpdf->Cell(190,10,'CLASSIC TAILORING SERVICES ',0,0,'C');
 
-    $query = "SELECT * FROM `tblstaff` where staff_Number = '$staff_Num'  "; 
+    $query = "SELECT * FROM `tblstaff` where department = '$department'  "; 
     $result = mysqli_query($dbc,$query);
     //$html = mysqli_num_rows($result);
     while ($row = mysqli_fetch_array($result)) {
     	if (file_exists('imgs/user.png')) {
 
    
-			$staff = $row['staff_number'];
-			$q = "UPDATE `tblstaff` SET `status`= 1 WHERE `staff_number` = '$staff'";
+			$staff = $row['department'];
+			$q = "UPDATE `tblstaff` SET `status`= 1 WHERE `department` = '$department'";
 			mysqli_query($dbc,$q);
 			
 	

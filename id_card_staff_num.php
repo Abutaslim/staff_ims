@@ -100,7 +100,7 @@ echo '<div style="width:100%; margin-left:0%">
       </div>
   </div>';
 }
- if (!empty($_SESSION['no_image']=='Y')) {
+ if (!empty(@$_SESSION['no_image']=='Y')) {
     $alert = 'alert alert-danger alert-dismissible';
 echo '<div style="width:100%; margin-left:0%">
       <div class="' .$alert .'">
@@ -129,13 +129,29 @@ echo '<div style="width:100%; margin-left:0%">
                                
                                     <div class="form-group" >
                         <label for="passenger">Staff Number:</label>
+
+                        <select class="form-control" name='staff_Num'>
+                            <option>Select Staff Number</option>
+                            <?php  
+
+                                $sql = "SELECT * FROM tblstaff";
+                                $result = mysqli_query($dbc, $sql);
+                            while($rows = mysqli_fetch_array($result)){
+                               
+
+                                    echo '<option value = '.$rows[1].'>'.$rows[1].'('.$rows[2].' '.' '.$rows[3].')</option>';
+                                    //$_SESSION['reg_Num'] = $reg_Num;
+                                }
+
+                            ?>
+                        </select>
                        
-                        <input type="text" class="form-control" id="staff_Num" placeholder="Enter staff Number"
-                                   value ="<?php if(isset($staff_Num)) {echo $staff_Num;}?>"             name='staff_Num'>
+                       <!--  <input type="text" class="form-control" id="staff_Num" placeholder="Enter staff Number"
+                                   value ="<?php //if(isset($staff_Num)) {echo $staff_Num;}?>"             name='staff_Num'>
                                 
                     
                                     </div>
-                                    
+                                     -->
 
                                    
                                 </div>

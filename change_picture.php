@@ -9,10 +9,10 @@ include 'inc/aside.php';
 if (isset($_POST['submit'])) {
 
     
-    $reg_Num = @$_POST['reg_Num'];
+    $staff_Num = @$_POST['staff_Num'];
     
     //$iid = $_SESSION['username'].$oid;
-    $sql = "SELECT id, image_path FROM tblstudent WHERE  reg_number = '$reg_Num'";
+    $sql = "SELECT id, photo FROM tblstaff WHERE  staff_number = '$staff_Num'";
     $message ='';
     $alert = '';
     $id =0;
@@ -30,19 +30,19 @@ if (isset($_POST['submit'])) {
         
         while ($row = mysqli_fetch_array($result)) {
             $id = $row['id'];
-            $image = $row['image_path'];
+            $image = $row['photo'];
         }
         
-        $target_dir = "student_imgs/";
+        $target_dir = "staff_imgs/";
         if (file_exists($target_dir.$image)) {
             unlink($target_dir.$image);
         }
         //sleep(rand(1,3));
         //$text = (@$_FILES["userimage"]["name"]);
         //echo $text;
-        $image = explode("/", $reg_Num);
+        $image = explode("/", $staff_Num);
 
-        $image_name = $image[0] . $image[1] . $image[2];
+        $image_name = $image[0] . $image[1] ;
         //$image = "";
         //$name = rand(1, 999);
         $target_file1 = $target_dir . basename(@$_FILES["passport"]["name"]);
@@ -122,7 +122,7 @@ if (isset($_POST['submit'])) {
 
             if (move_uploaded_file(@$_FILES["passport"]["tmp_name"], $target_file)) {
 
-                $s = "UPDATE `tblstudent`SET `image_path` = '$image_name' WHERE id = '$id'";
+                $s = "UPDATE `tblstaff`SET `photo` = '$image_name' WHERE id = '$id'";
                 if (mysqli_query($dbc, $s)) {
                     $message .= 'Image is changed Successfully.<br>';
                      $alert = 'alert alert-info alert-dismissible';
@@ -149,7 +149,7 @@ if (isset($_POST['submit'])) {
 
 
 // if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == 'POST') {
-//     $reg_Num = $_POST['reg_Num'];
+//     $staff _Num = $_POST['staff _Num'];
 //     $name = $_POST['name'];
 //     $gender = $_POST['gender'];
 //     $p_num = $_POST['p_num'];
@@ -159,9 +159,9 @@ if (isset($_POST['submit'])) {
 //     $rank = $_POST['rank'];
 
 
-//     // if (!empty($reg_num) and !empty($gender) and !empty($name)) {
-//         $sql = "INSERT INTO `tblstudent`(`reg_number`, `name`, `phone`, `email`, `agency`, `rank`, `gender`, `course_enrol_id`) VALUES 
-//         ('$reg_Num','$name','$p_num','$email','$agency','$rank','$gender','$course_enrol_id')";
+//     // if (!empty($staff _num) and !empty($gender) and !empty($name)) {
+//         $sql = "INSERT INTO `tblstaff`(`staff _number`, `name`, `phone`, `email`, `agency`, `rank`, `gender`, `course_enrol_id`) VALUES 
+//         ('$staff _Num','$name','$p_num','$email','$agency','$rank','$gender','$course_enrol_id')";
 //         $result = mysqli_query($dbc, $sql);
 //         if (mysqli_affected_rows($dbc) == 1) {
 //             $message = 'Record Added Successfully';
@@ -231,7 +231,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="change_picture.php" enctype="multipart/form-data" name="enrol_student">
+                        <form method="POST" action="change_picture.php" enctype="multipart/form-data" name="enrol_staff">
                             <div class="card-body">
                                
                                
@@ -242,8 +242,23 @@ if (isset($_POST['submit'])) {
 
                                 
                                         <div class="form-group">
-                                            <label for="text">Registration Number</label>
-                                            <input type="text" name="reg_Num" id="reg_Num" class="form-control">
+                                            <label for="text">Staff Number</label>
+                                            <select class="form-control" name='staff_Num'>
+                            <option>Select Staff Number</option>
+                            <?php  
+
+                                $sql = "SELECT * FROM tblstaff";
+                                $result = mysqli_query($dbc, $sql);
+                            while($rows = mysqli_fetch_array($result)){
+                               
+
+                                    echo '<option value = '.$rows[1].'>'.$rows[1].'('.$rows[2].' '.' '.$rows[3].')</option>';
+                                    //$_SESSION['reg_Num'] = $reg_Num;
+                                }
+
+                            ?>
+                        </select>
+                       
 
                                         </div>
                                   
