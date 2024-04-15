@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2024 at 10:52 AM
+-- Generation Time: Apr 15, 2024 at 11:34 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -60,7 +60,8 @@ INSERT INTO `tblstaff` (`id`, `staff_number`, `first_name`, `others`, `photo`, `
 (12, 'PF/012', 'Elizabeth', 'Ofie Friday', 'user2.png', 1, 'System Analyst II', 'Registry', 'F', 'B+', '8063253416'),
 (13, 'PF/013', 'Umar', 'Muhammad Yakasai', 'user2.png', 1, 'System Analyst II', 'Registry', 'M', 'B+', '8063253417'),
 (14, 'PF/014', 'Umar', 'Adam Muhammad', 'user2.png', 1, 'System Analyst II', 'Registry', 'M', 'B+', '8063253418'),
-(15, 'PF/015', 'Ghaniyyah', 'Ize Muhammed', 'user2.png', 1, 'System Analyst II', 'Registry', 'F', 'B+', '8063253419');
+(15, 'PF/015', 'Ghaniyyah', 'Ize Muhammed', 'user2.png', 1, 'System Analyst II', 'Registry', 'F', 'B+', '8063253419'),
+(16, '1', 'Prof. Muhammad', 'Sanusi Magaji', 'rector.jpg', 1, 'Rector', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -909,7 +910,7 @@ ALTER TABLE `tblusers`
 -- AUTO_INCREMENT for table `tblstaff`
 --
 ALTER TABLE `tblstaff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tblstudent`
